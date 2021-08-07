@@ -23,6 +23,8 @@ df_edges = df_flights[[
 ]].dropna()
 df_edges = df_edges.groupby(df_edges.columns.tolist(), as_index=False).size()
 for index, row in df_edges.iterrows():
+    if row['origin_airport_abbreviation'] == row['destination_airport_abbreviation']:
+        continue
     G.add_edge(row['origin_airport_abbreviation'], row['destination_airport_abbreviation'], flight_count=row['size'])
 
 # Export to graphml
