@@ -63,17 +63,21 @@ df_airports = df_airports.drop_duplicates()
 
 # Airfields dataset
 airfields_columns = [
-    'CÓDIGO OACI',
-    'LatGeoPoint',
-    'LonGeoPoint',
+    'Código OACI',
+    'LATGEOPOINT',
+    'LONGEOPOINT',
 ]
-df_airfields = pd.read_csv(path + 'public_aerodromes.csv', sep=';', usecols=airfields_columns, skiprows=1)
+df_airfields = pd.read_csv(path + 'public_aerodromes.csv',
+                           sep=';',
+                           usecols=airfields_columns,
+                           skiprows=1,
+                           encoding='ISO-8859-1')
 
 # Rename columns
 columns_map = {
     'CÓDIGO OACI': 'code',
-    'LatGeoPoint': 'lat_geo_point',
-    'LonGeoPoint': 'lon_geo_point',
+    'LATGEOPOINT': 'lat_geo_point',
+    'LONGEOPOINT': 'lon_geo_point',
 }
 df_airfields = df_airfields.rename(columns=columns_map)
 
