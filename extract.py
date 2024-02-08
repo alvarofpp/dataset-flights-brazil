@@ -28,11 +28,19 @@ for link in tqdm(links):
             file_to_save.write(file_response.content)
 
 # Public aerodromes (ANAC)
-url = 'https://sistemas.anac.gov.br/dadosabertos/Aerodromos/Lista%20de%20aer%C3%B3dromos%20p%C3%BAblicos/AerodromosPublicos.csv'
-file_response = requests.get(url)
-open(path + 'public_aerodromes.csv', 'wb').write(file_response.content)
+public_aerodromes_filepath = path + 'public_aerodromes.csv'
+if not os.path.exists(public_aerodromes_filepath):
+    url = 'https://sistemas.anac.gov.br/dadosabertos/Aerodromos/Aer%C3%B3dromos%20P%C3%BAblicos/Lista%20de%20aer%C3%B3dromos%20p%C3%BAblicos/AerodromosPublicos.csv'
+    with requests.get(url) as file_response:
+        with open(public_aerodromes_filepath, 'wb') as file_to_save:
+            file_to_save.write(file_response.content)
+    open(path + 'public_aerodromes.csv', 'wb').write(file_response.content)
 
 # Airport Codes (DataHub.io)
-url = 'https://datahub.io/core/airport-codes/r/airport-codes.csv'
-file_response = requests.get(url)
-open(path + 'airport_codes.csv', 'wb').write(file_response.content)
+airport_codes_filepath = path + 'airport_codes.csv'
+if not os.path.exists(airport_codes_filepath):
+    url = 'https://datahub.io/core/airport-codes/r/airport-codes.csv'
+    with requests.get(url) as file_response:
+        with open(airport_codes_filepath, 'wb') as file_to_save:
+            file_to_save.write(file_response.content)
+    open(path + 'airport_codes.csv', 'wb').write(file_response.content)
