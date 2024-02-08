@@ -6,9 +6,6 @@ ROOT=$(shell pwd)
 DOCKER_IMAGE_LINTER=alvarofpp/linter:latest
 LINT_COMMIT_TARGET_BRANCH=origin/main
 
-## Test
-TEST_CONTAINER_NAME=${APP_NAME}_test
-
 # Commands
 .PHONY: install-hooks
 install-hooks:
