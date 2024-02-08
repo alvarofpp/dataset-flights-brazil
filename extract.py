@@ -23,8 +23,9 @@ for link in tqdm(links):
     if os.path.exists(filename):
         continue
 
-    file_response = requests.get(link)
-    open(filename, 'wb').write(file_response.content)
+    with requests.get(link) as file_response:
+        with open(filename, 'wb') as file_to_save:
+            file_to_save.write(file_response.content)
 
 # Public aerodromes (ANAC)
 url = 'https://sistemas.anac.gov.br/dadosabertos/Aerodromos/Lista%20de%20aer%C3%B3dromos%20p%C3%BAblicos/AerodromosPublicos.csv'
