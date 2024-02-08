@@ -93,7 +93,6 @@ To convert the `data/anac.csv` file into `data/anac.csv.lrz`, you must execute t
 ```shell
 sudo apt install lrzip
 lrzip -z data/anac.csv
-mv data/anac.csv.lrz data/anac.csv.lrz
 ```
 
 ## Contributing

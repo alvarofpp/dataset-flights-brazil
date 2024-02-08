@@ -34,7 +34,6 @@ if not os.path.exists(public_aerodromes_filepath):
     with requests.get(url) as file_response:
         with open(public_aerodromes_filepath, 'wb') as file_to_save:
             file_to_save.write(file_response.content)
-    open(path + 'public_aerodromes.csv', 'wb').write(file_response.content)
 
 # Airport Codes (DataHub.io)
 airport_codes_filepath = path + 'airport_codes.csv'
@@ -43,4 +42,3 @@ if not os.path.exists(airport_codes_filepath):
     with requests.get(url) as file_response:
         with open(airport_codes_filepath, 'wb') as file_to_save:
             file_to_save.write(file_response.content)
-    open(path + 'airport_codes.csv', 'wb').write(file_response.content)
