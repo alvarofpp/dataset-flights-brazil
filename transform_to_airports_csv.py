@@ -1,5 +1,10 @@
+import os.path
 import geocoder
 import pandas as pd
+
+if os.path.exists('data/airports.csv'):
+    print('data/airports.csv file already exists.')
+    exit(0)
 
 path = 'data/extract/'
 
@@ -122,7 +127,7 @@ for index, row in df_merge[df_merge.lat_geo_point.isnull()].iterrows():
     label = ''
 
     for column in columns:
-        if type(row[column]) == str and row[column]:
+        if isinstance(row[column], str) and row[column]:
             label += row[column] + ', '
 
     if not label:

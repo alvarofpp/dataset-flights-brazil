@@ -1,5 +1,10 @@
+import os.path
 import networkx as nx
 import pandas as pd
+
+if os.path.exists('data/air_traffic.graphml'):
+    print('data/air_traffic.graphml file already exists.')
+    exit(0)
 
 df_airports = pd.read_csv('data/airports.csv')
 df_flights = pd.read_csv('data/anac.csv')

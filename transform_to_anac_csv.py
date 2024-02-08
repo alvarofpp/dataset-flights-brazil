@@ -1,5 +1,10 @@
+import os.path
 import glob
 import pandas as pd
+
+if os.path.exists('data/anac.csv'):
+    print('data/anac.csv file already exists.')
+    exit(0)
 
 files = glob.glob('data/extract/resumo_anual_*.csv')
 
