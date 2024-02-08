@@ -1,0 +1,12 @@
+---
+version: '3.8'
+
+services:
+  dataset-flights-brazil:
+    build:
+      context: .
+    image: alvarofpp/dataset-flights-brazil
+    container_name: dataset-flights-brazil
+    user: "${UID_GID}"
+    volumes:
+      - .:/app

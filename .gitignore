@@ -1,2 +1,8 @@
 .idea/
 venv/
+
+*.csv
+!data/extract/.gitkeep
+!data/air_traffic.graphml
+!data/airports.csv
+!data/anac.csv.lrz
