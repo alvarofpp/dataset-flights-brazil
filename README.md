@@ -4,11 +4,12 @@ This repository have datasets with all flights in Brazil registered by ANAC
 (Agência Nacional de Aviação Civil - National Civil Aviation Agency), all airports
 involved in these flights and a undirected graph with the number of flights between two airports.
 
-- Sources:
-  - [Flights in Brazil by ANAC](https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/dados-estatisticos).
-  - [List of public aerodromes by ANAC](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2).
-  - [Airport Codes by DataHub.io](https://datahub.io/core/airport-codes)
-    (note: the latitude and longitude columns have their values swapped).
+Sources:
+
+- [Flights in Brazil by ANAC](https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/dados-estatisticos).
+- [List of public aerodromes by ANAC](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2).
+- [Airport Codes by DataHub.io](https://datahub.io/core/airport-codes)
+  (note: the latitude and longitude columns have their values swapped).
 
 After merging the datasets, the [geocoder](https://github.com/DenisCarriere/geocoder)
 package was used to fill in the empty values.
@@ -17,9 +18,10 @@ package was used to fill in the empty values.
 
 You can find the datasets in `data/`.
 
-### [`anac.zip`](data/anac.zip)
+### [`anac.csv.lrz`](data/anac.csv.lrz)
 
 All flights in Brazil by ANAC. ANAC does not provide the data dictionary.
+You can use `lrzip` to decompress the file.
 
 ### [`airports.csv`](data/airports.csv)
 
@@ -102,5 +104,5 @@ For bugs, ideas for improvement or other, please create an
 
 ## License
 
-This project is licensed under the CDLA-Sharing-1.0 License - see the [LICENSE.md](LICENSE.md)
+This project is licensed under the CDLA-Sharing-1.0 License - see the [LICENSE](LICENSE)
 file for details.
