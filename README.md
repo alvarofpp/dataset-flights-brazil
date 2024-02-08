@@ -1,20 +1,28 @@
 # Flights in Brazil
-This repository have datasets with all flights in Brazil registered by ANAC (Agência Nacional de Aviação Civil - National Civil Aviation Agency), all airports involved in these flights and a undirected graph with the number of flights between two airports.
+
+This repository have datasets with all flights in Brazil registered by ANAC
+(Agência Nacional de Aviação Civil - National Civil Aviation Agency), all airports
+involved in these flights and a undirected graph with the number of flights between two airports.
 
 - Sources:
   - [Flights in Brazil by ANAC](https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/dados-estatisticos).
   - [List of public aerodromes by ANAC](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2).
-  - [Airport Codes by DataHub.io](https://datahub.io/core/airport-codes) (note: the latitude and longitude columns have their values swapped).
+  - [Airport Codes by DataHub.io](https://datahub.io/core/airport-codes)
+    (note: the latitude and longitude columns have their values swapped).
 
-After merging the datasets, the [geocoder](https://github.com/DenisCarriere/geocoder) package was used to fill in the empty values.
+After merging the datasets, the [geocoder](https://github.com/DenisCarriere/geocoder)
+package was used to fill in the empty values.
 
 ## Datasets
+
 You can find the datasets in `data/`.
 
 ### [`anac.zip`](data/anac.zip)
+
 All flights in Brazil by ANAC. ANAC does not provide the data dictionary.
 
 ### [`airports.csv`](data/airports.csv)
+
 All airports on ANAC flight records.
 
 | Column | Type | Description | Example |
@@ -29,9 +37,11 @@ All airports on ANAC flight records.
 | lon_geo_point | `double` | Longitude of the airport reference point. | `-41.041944` |
 
 ### [`air_traffic.graphml`](data/air_traffic.graphml)
+
 It's an undirected graph.
 
 #### Node attributes
+
 The id of each node is the ICAO airport code.
 
 | Column | Type | Description | Example |
@@ -42,17 +52,20 @@ The id of each node is the ICAO airport code.
 | longitude | `double` | Longitude of the airport reference point. | `-46.473056` |
 
 #### Edge attributes
+
 | Column | Type | Description | Example |
 | --- | --- | --- | --- |
 | flight_count | `int` | Number of flights carried out between these airports. | `147` |
 
 ## Scripts
+
 - `extract.py` - Download all CSV files and puts them in the `data/extract` folder.
 - `transform_to_anac_csv.py` - Merges all files downloaded from ANAC, rename the columns and create `anac.csv`.
 - `transform_to_airports_csv.py` - Creates a dataset with all airports (`airports.csv`).
 - `transform_to_graphml.py` - Creates an undirected graph (`air_traffic.graphml`).
 
 ## Generate
+
 In your environment:
 
 ```shell
@@ -68,8 +81,26 @@ python3 transform_to_airports_csv.py
 python3 transform_to_graphml.py
 ```
 
+If you have Docker and Makefile installed on your machine,
+you can execute the `make build` command to create the image,
+followed by `make shell` to access a container and execute
+the aforementioned steps to generate the files.
+
+To convert the `data/anac.csv` file into `data/anac.csv.lrz`, you must execute the following commands:
+
+```shell
+sudo apt install lrzip
+lrzip -z data/anac.csv
+mv data/anac.csv.lrz data/anac.csv.lrz
+```
+
 ## Contributing
-Contributions are more than welcome. Fork, improve and make a pull request. For bugs, ideas for improvement or other, please create an [issue](https://github.com/alvarofpp/dataset-flights-brazil/issues).
+
+Contributions are more than welcome. Fork, improve and make a pull request.
+For bugs, ideas for improvement or other, please create an
+[issue](https://github.com/alvarofpp/dataset-flights-brazil/issues).
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+This project is licensed under the CDLA-Sharing-1.0 License - see the [LICENSE.md](LICENSE.md)
+file for details.
