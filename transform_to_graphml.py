@@ -1,4 +1,5 @@
 import os.path
+
 import networkx as nx
 import pandas as pd
 
@@ -13,7 +14,7 @@ df_flights = pd.read_csv('data/anac.csv')
 G = nx.Graph()
 
 # Add nodes
-for index, row in df_airports.iterrows():
+for index, row in df_airports.iterrows(): # noqa: B007
     G.add_node(row['code'],
                name=row['name'],
                country=row['country'],
@@ -27,10 +28,14 @@ df_edges = df_flights[[
     'destination_airport_abbreviation',
 ]].dropna()
 df_edges = df_edges.groupby(df_edges.columns.tolist(), as_index=False).size()
-for index, row in df_edges.iterrows():
+for index, row in df_edges.iterrows(): # noqa: B007
     if row['origin_airport_abbreviation'] == row['destination_airport_abbreviation']:
         continue
-    G.add_edge(row['origin_airport_abbreviation'], row['destination_airport_abbreviation'], flight_count=row['size'])
+    G.add_edge(
+        row['origin_airport_abbreviation'],
+        row['destination_airport_abbreviation'],
+        flight_count=row['size']
+    )
 
 # Export to graphml
 nx.write_graphml(G, 'data/air_traffic.graphml')

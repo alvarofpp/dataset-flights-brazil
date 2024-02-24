@@ -1,4 +1,5 @@
 import os.path
+
 import geocoder
 import pandas as pd
 
@@ -91,14 +92,19 @@ others_airports_columns = [
     'ident',
     'coordinates',
 ]
-df_others_airports = pd.read_csv(path + 'airport_codes.csv', usecols=others_airports_columns)
+df_others_airports = pd.read_csv(
+    path + 'airport_codes.csv',
+    usecols=others_airports_columns
+)
 
 # Rename columns
 columns_map = {
     'ident': 'code',
 }
 df_others_airports = df_others_airports.rename(columns=columns_map)
-df_others_airports[['lon_geo_point', 'lat_geo_point']] = df_others_airports.coordinates.str.split(', ', expand=True, )
+df_others_airports[
+    ['lon_geo_point', 'lat_geo_point']
+] = df_others_airports.coordinates.str.split(', ', expand=True, )
 df_others_airports = df_others_airports.drop(columns=['coordinates'])
 
 # Coordinates dataframe
@@ -123,7 +129,7 @@ columns = [
     'continent',
 ]
 airports_to_find = []
-for index, row in df_merge[df_merge.lat_geo_point.isnull()].iterrows():
+for index, row in df_merge[df_merge.lat_geo_point.isnull()].iterrows(): # noqa: B007
     label = ''
 
     for column in columns:

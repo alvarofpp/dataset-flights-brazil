@@ -1,7 +1,8 @@
 import os.path
+
 import requests
-from tqdm import tqdm
 from bs4 import BeautifulSoup
+from tqdm import tqdm
 
 path = 'data/extract/'
 
@@ -23,22 +24,21 @@ for link in tqdm(links):
     if os.path.exists(filename):
         continue
 
-    with requests.get(link) as file_response:
-        with open(filename, 'wb') as file_to_save:
-            file_to_save.write(file_response.content)
+    with requests.get(link) as file_response, open(filename, 'wb') as file_to_save:
+        file_to_save.write(file_response.content)
 
 # Public aerodromes (ANAC)
 public_aerodromes_filepath = path + 'public_aerodromes.csv'
 if not os.path.exists(public_aerodromes_filepath):
     url = 'https://sistemas.anac.gov.br/dadosabertos/Aerodromos/Aer%C3%B3dromos%20P%C3%BAblicos/Lista%20de%20aer%C3%B3dromos%20p%C3%BAblicos/AerodromosPublicos.csv'
-    with requests.get(url) as file_response:
-        with open(public_aerodromes_filepath, 'wb') as file_to_save:
-            file_to_save.write(file_response.content)
+    with requests.get(url) as file_response, \
+            open(public_aerodromes_filepath, 'wb') as file_to_save:
+        file_to_save.write(file_response.content)
 
 # Airport Codes (DataHub.io)
 airport_codes_filepath = path + 'airport_codes.csv'
 if not os.path.exists(airport_codes_filepath):
     url = 'https://datahub.io/core/airport-codes/r/airport-codes.csv'
-    with requests.get(url) as file_response:
-        with open(airport_codes_filepath, 'wb') as file_to_save:
-            file_to_save.write(file_response.content)
+    with requests.get(url) as file_response, \
+            open(airport_codes_filepath, 'wb') as file_to_save:
+        file_to_save.write(file_response.content)

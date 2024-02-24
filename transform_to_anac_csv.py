@@ -1,5 +1,6 @@
-import os.path
 import glob
+import os.path
+
 import pandas as pd
 
 if os.path.exists('data/anac.csv'):
@@ -9,7 +10,9 @@ if os.path.exists('data/anac.csv'):
 files = glob.glob('data/extract/resumo_anual_*.csv')
 
 # Combine all files in the list
-combined_csv = pd.concat([pd.read_csv(file, sep=';', encoding='ISO-8859-1') for file in files])
+combined_csv = pd.concat(
+    [pd.read_csv(file, sep=';', encoding='ISO-8859-1') for file in files]
+)
 
 # Rename columns
 columns_map = {
